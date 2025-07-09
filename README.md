@@ -21,7 +21,7 @@ import PrintAdvance
 // Chain print calls
 let result = "Hello, World!"
     .print()
-    .print(to: FilePrint(url: fileURL))
+    .print(to: FilePrint.documentsFile)
 
 // Print Results
 let result: Result<String, Error> = .success("Success!").print()
@@ -37,7 +37,7 @@ struct ContentView: View {
 
 // Print Publishers (Combine)
 publisher
-    .print(prefix: "Debug: ", to: FilePrint(url: logFile))
+    .print(prefix: "Debug: ", to: FilePrint.documentsFile)
     .sink { _ in }
 ```
 
