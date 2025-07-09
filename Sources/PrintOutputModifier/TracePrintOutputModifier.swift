@@ -19,7 +19,7 @@ public extension PrintOutput {
     func trace(
         function: String = #function,
         file: String = #file,
-        line: Int = #line,
+        line: Int = #line
     ) -> ModifiedPrintOutput<Self> {
         self.modified(
             TracePrintOutputModifier(
