@@ -48,8 +48,7 @@ publisher
 "Message".print(to: ConsolePrint())
 
 // File output
-let fileOutput = try FilePrint(url: URL(fileURLWithPath: "/path/to/log.txt"))
-"Log entry".print(to: fileOutput)
+"Log entry".print(to: FilePrint.documentsFile)
 
 // Buffer output
 "Buffered message".print(to: BufferPrint.shared)
