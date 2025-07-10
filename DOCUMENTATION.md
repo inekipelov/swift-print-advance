@@ -29,7 +29,7 @@ The documentation workflow (`docs.yml`) performs these steps:
 1. **Build & Test**: Ensures package builds and tests pass
 2. **Generate DocC Archive**: Creates documentation bundle
 3. **Transform for Static Hosting**: Converts to GitHub Pages compatible format
-4. **Deploy**: Publishes to GitHub Pages at `https://inekipelov.github.io/swift-print-advance`
+4. **Deploy**: Publishes to GitHub Pages at `https://inekipelov.github.io/swift-print-advance/documentation/printadvance/`
 
 ## Local Development
 

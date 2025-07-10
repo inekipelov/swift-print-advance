@@ -31,6 +31,10 @@ jobs:
     runs-on: macos-latest
     needs: build-and-test
     
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
     - uses: actions/checkout@v4
     
@@ -54,6 +58,14 @@ jobs:
             
           echo "Documentation processed successfully"
           ls -la docs/
+          
+          # Verify the main documentation file exists
+          if [ -f "docs/documentation/printadvance/index.html" ]; then
+            echo "✅ Main documentation page created"
+          else
+            echo "❌ Main documentation page missing"
+            find docs -name "*.html" | head -10
+          fi
         else
           echo "Error: Documentation archive not found"
           exit 1
