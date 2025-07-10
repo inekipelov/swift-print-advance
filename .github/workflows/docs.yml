@@ -38,39 +38,28 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Generate Documentation Archive
+    - name: Generate Documentation
       run: |
-        swift package generate-documentation --target PrintAdvance
+        swift package \
+          --allow-writing-to-directory ./docs \
+          generate-documentation \
+          --target PrintAdvance \
+          --output-path ./docs \
+          --transform-for-static-hosting \
+          --hosting-base-path /swift-print-advance
+          
+        echo "Documentation generated successfully"
+        ls -la docs/
         
-    - name: Process Documentation Archive
-      run: |
-        # Extract doccarchive to HTML
-        DOCC_ARCHIVE=".build/plugins/Swift-DocC/outputs/PrintAdvance.doccarchive"
+        # Add .nojekyll file to prevent GitHub Pages from processing with Jekyll
+        touch docs/.nojekyll
         
-        if [ -d "$DOCC_ARCHIVE" ]; then
-          mkdir -p docs
-          
-          # Use docc to convert archive to static site
-          xcrun docc process-archive \
-            transform-for-static-hosting "$DOCC_ARCHIVE" \
-            --output-path docs
-            
-          echo "Documentation processed successfully"
-          ls -la docs/
-          
-          # Add .nojekyll file to prevent GitHub Pages from processing with Jekyll
-          touch docs/.nojekyll
-          
-          # Verify the main documentation file exists
-          if [ -f "docs/documentation/printadvance/index.html" ]; then
-            echo "✅ Main documentation page created"
-          else
-            echo "❌ Main documentation page missing"
-            find docs -name "*.html" | head -10
-          fi
+        # Verify the main documentation file exists
+        if [ -f "docs/documentation/printadvance/index.html" ]; then
+          echo "✅ Main documentation page created"
         else
-          echo "Error: Documentation archive not found"
-          exit 1
+          echo "❌ Main documentation page missing"
+          find docs -name "*.html" | head -10
         fi
         
     - name: Upload Documentation
