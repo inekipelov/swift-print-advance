@@ -1,72 +1,19 @@
 # Documentation workflow - generates and deploys DocC documentation to GitHub Pages
 
 name: Documentation
-
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch:  # Allow manual trigger
-  
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
+    branches:
+      - 'main'
 jobs:
-  build-and-test:
-    runs-on: macos-latest
-    
+  build_docC:
+    runs-on: macos-12
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
-      
-  documentation:
-    runs-on: macos-latest
-    needs: build-and-test
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Generate Documentation
-      run: |
-        swift package \
-          --allow-writing-to-directory ./docs \
-          generate-documentation \
-          --target PrintAdvance \
-          --output-path ./docs \
-          --transform-for-static-hosting \
-          --hosting-base-path /swift-print-advance
-          
-        echo "Documentation generated successfully"
-        ls -la docs/
-        
-        # Add .nojekyll file to prevent GitHub Pages from processing with Jekyll
-        touch docs/.nojekyll
-        
-        # Verify the main documentation file exists
-        if [ -f "docs/documentation/printadvance/index.html" ]; then
-          echo "✅ Main documentation page created"
-        else
-          echo "❌ Main documentation page missing"
-          find docs -name "*.html" | head -10
-        fi
-        
-    - name: Upload Documentation
-      uses: actions/upload-pages-artifact@v3
+    - name: checkout
+      uses: actions/checkout@v3
       with:
-        path: ./docs
-        
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+       repository: ${{ github.event.pull_request.head.repo.full_name }}
+       ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: build static site
+      uses: actions/build-docC-static-site@v1.0.2
