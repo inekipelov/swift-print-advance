@@ -22,7 +22,7 @@ jobs:
       - name: Build DocC Documentation
         run: |
           xcodebuild docbuild \
-            -scheme PrintAdvance \
+            -scheme swift-print-advance \
             -destination 'platform=macOS' \
             -derivedDataPath DerivedData
 
