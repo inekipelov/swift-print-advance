@@ -56,6 +56,12 @@ print(buffer.content) // Retrieve buffered content
 
 // Pasteboard output (macOS/iOS/tvOS)
 "Copy to clipboard".print(to: PasteboardPrint.general)
+
+// Combine multiple outputs using 'with' extension
+"Critical event".print(to: ConsolePrint()
+    .with(FilePrint.documentsFile)
+    .with(BufferPrint.shared)
+)
 ```
 
 ### Output Modifiers

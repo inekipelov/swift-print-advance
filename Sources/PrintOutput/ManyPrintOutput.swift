@@ -47,6 +47,11 @@ public extension ManyPrintOutput {
     static func with(_ outputs: [any PrintOutput]) -> ManyPrintOutput {
         return ManyPrintOutput(outputs)
     }
+    
+    func with(_ output: any PrintOutput) -> ManyPrintOutput {
+        self.add(output)
+        return self
+    }
 }
 
 public extension PrintOutput {
