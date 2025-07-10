@@ -53,11 +53,13 @@ jobs:
           # Use docc to convert archive to static site
           xcrun docc process-archive \
             transform-for-static-hosting "$DOCC_ARCHIVE" \
-            --hosting-base-path swift-print-advance \
             --output-path docs
             
           echo "Documentation processed successfully"
           ls -la docs/
+          
+          # Add .nojekyll file to prevent GitHub Pages from processing with Jekyll
+          touch docs/.nojekyll
           
           # Verify the main documentation file exists
           if [ -f "docs/documentation/printadvance/index.html" ]; then
