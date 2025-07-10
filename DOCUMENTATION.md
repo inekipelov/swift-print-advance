@@ -1,6 +1,18 @@
 # Documentation Deployment Configuration
 
-This repository is configured to automatically build and deploy DocC documentation to GitHub Pages.
+This repository is configured to automatically build and deploy DocC documentation to GitHub Pages using separate workflows.
+
+## Workflows
+
+### 1. swift.yml - Build & Test
+- **Purpose**: Build validation and testing
+- **Trigger**: Push to any branch, Pull requests  
+- **Actions**: Compile package and run tests only
+
+### 2. docs.yml - Documentation  
+- **Purpose**: Generate and deploy documentation
+- **Trigger**: Push to main branch, Manual dispatch
+- **Actions**: Build, test, generate docs, deploy to GitHub Pages
 
 ## Setup
 
@@ -10,13 +22,14 @@ This repository is configured to automatically build and deploy DocC documentati
    - Workflow permissions: Read and write permissions
    - Allow GitHub Actions to create and approve pull requests: ✓
 
-## Workflow
+## Deployment Process
 
-The documentation is built and deployed via `.github/workflows/swift.yml`:
+The documentation workflow (`docs.yml`) performs these steps:
 
-- **Trigger**: Push to main branch or pull requests
-- **Build**: Compiles the Swift package and generates DocC documentation
-- **Deploy**: Publishes to GitHub Pages at `https://[username].github.io/swift-print-advance`
+1. **Build & Test**: Ensures package builds and tests pass
+2. **Generate DocC Archive**: Creates documentation bundle
+3. **Transform for Static Hosting**: Converts to GitHub Pages compatible format
+4. **Deploy**: Publishes to GitHub Pages at `https://inekipelov.github.io/swift-print-advance`
 
 ## Local Development
 
@@ -36,7 +49,7 @@ swift package --disable-sandbox preview-documentation --target PrintAdvance
 ## Documentation Structure
 
 ```
-Sources/PrintAdvance/Documentation.docc/
+Documentation.docc/                  # Documentation bundle in project root
 ├── PrintAdvance.md              # Main documentation page
 ├── QuickStart.md               # Getting started guide
 ├── Installation.md             # Installation instructions
@@ -50,6 +63,9 @@ Sources/PrintAdvance/Documentation.docc/
 ├── PerformanceConsiderations.md # Performance optimization
 ├── Troubleshooting.md          # Common issues and solutions
 └── README.md                   # Documentation guidelines
+Sources/
+Tests/
+Package.swift
 ```
 
 ## URLs

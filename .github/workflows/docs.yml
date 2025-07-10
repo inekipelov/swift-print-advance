@@ -1,0 +1,69 @@
+# Documentation workflow - generates and deploys DocC documentation to GitHub Pages
+
+name: Documentation
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:  # Allow manual trigger
+  
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
+      
+  documentation:
+    runs-on: macos-latest
+    needs: build-and-test
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Generate Documentation Archive
+      run: |
+        swift package generate-documentation --target PrintAdvance
+        
+    - name: Process Documentation Archive
+      run: |
+        # Extract doccarchive to HTML
+        DOCC_ARCHIVE=".build/plugins/Swift-DocC/outputs/PrintAdvance.doccarchive"
+        
+        if [ -d "$DOCC_ARCHIVE" ]; then
+          mkdir -p docs
+          
+          # Use docc to convert archive to static site
+          xcrun docc process-archive \
+            transform-for-static-hosting "$DOCC_ARCHIVE" \
+            --hosting-base-path swift-print-advance \
+            --output-path docs
+            
+          echo "Documentation processed successfully"
+          ls -la docs/
+        else
+          echo "Error: Documentation archive not found"
+          exit 1
+        fi
+        
+    - name: Upload Documentation
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./docs
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
