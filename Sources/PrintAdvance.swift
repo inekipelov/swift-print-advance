@@ -57,7 +57,7 @@
 ///
 public struct PrintAdvance {
     /// The current version of the PrintAdvance library.
-    public static let version = "1.0.0"
+    public static let version = "0.1.0"
     
     /// Private initializer to prevent instantiation.
     private init() {}
