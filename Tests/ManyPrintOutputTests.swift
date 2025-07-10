@@ -104,7 +104,15 @@ class ManyPrintOutputTests: XCTestCase {
         manyOutput.write(testString)
         
         XCTAssertEqual(mockOutput.capturedOutput, testString)
-        XCTAssertEqual(bufferOutput.buffer, testString)
         XCTAssertEqual(manyOutput.count, 2)
+        
+        // Wait for async buffer update to complete
+        let expectation = XCTestExpectation(description: "Buffer update")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+        
+        XCTAssertEqual(bufferOutput.buffer, testString)
     }
 }
