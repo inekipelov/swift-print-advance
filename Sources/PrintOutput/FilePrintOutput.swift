@@ -49,7 +49,7 @@ public final class FilePrintOutput: PrintOutput {
     
     public func write(_ string: String) {
         filePrintSerialQueue.async { [fileHandle] in
-            print(string)
+            Swift.print(string, terminator: "")
             let data = Data(string.utf8)
             fileHandle.seekToEndOfFile()
             fileHandle.write(data)
