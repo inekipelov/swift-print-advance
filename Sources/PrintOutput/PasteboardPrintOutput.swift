@@ -12,11 +12,19 @@ public typealias SystemPasteboard = NSPasteboard
 
 typealias PasteboardPrint = PasteboardPrintOutput
 
-@available(iOS 9, macOS 10.13, tvOS 9, *)
+private let pasteboardPrintSerialQueue = DispatchQueue(
+    label: "com.swift-print-advance.PasteboardPrintOutput",
+    qos: .utility
+)
+
+@available(iOS 9, macOS 10.13, *)
+@available(watchOS, unavailable, message: "Pasteboard operations are not supported on watchOS")
+@available(tvOS, unavailable, message: "Pasteboard operations are not practical on tvOS")
+@available(iOSApplicationExtension, unavailable, message: "Pasteboard access is restricted in iOS Extensions")
 public final class PasteboardPrintOutput: PrintOutput {
     static let general = PasteboardPrintOutput(pasteboard: .general)
     
-    private(set) var buffer: [String] = []
+    private(set) var buffer: String = ""
     let pasteboard: SystemPasteboard
     
     public init(pasteboard: SystemPasteboard = .general) {
@@ -24,29 +32,43 @@ public final class PasteboardPrintOutput: PrintOutput {
     }
     
     public func write(_ string: String) {
-        buffer.append(string)
-        let joined = buffer.joined(separator: "")
-#if os(iOS) || os(tvOS)
-        pasteboard.string = joined
-#elseif os(macOS)
-        pasteboard.clearContents()
-        pasteboard.setString(joined, forType: .string)
-#endif
+        pasteboardPrintSerialQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.buffer.append(string)
+            self.pendingUpdatePasteboard(with: self.buffer)
+        }
     }
     
     /// Clears the internal buffer and pasteboard content
     public func clear() {
-        buffer.removeAll()
-#if os(iOS) || os(tvOS)
-        pasteboard.string = ""
+        pasteboardPrintSerialQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.buffer = ""
+            self.pendingUpdatePasteboard()
+        }
+    }
+
+    private var pendingPasteboardUpdate: DispatchWorkItem?
+}
+
+private extension PasteboardPrintOutput {
+    func pendingUpdatePasteboard(with content: String = "") {
+        self.pendingPasteboardUpdate?.cancel()
+        let workItem = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            self.updatePasteboard(with: content)
+        }
+        self.pendingPasteboardUpdate = workItem
+        DispatchQueue.main
+            .asyncAfter(deadline: .now() + 0.1, execute: workItem)
+    }
+    func updatePasteboard(with content: String = "") {
+#if os(iOS)
+        pasteboard.string = content
 #elseif os(macOS)
         pasteboard.clearContents()
+        pasteboard.setString(content, forType: .string)
 #endif
-    }
-    
-    /// Returns the current content of the buffer as a single string
-    public var content: String {
-        return buffer.joined(separator: "")
     }
 }
 
