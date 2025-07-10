@@ -2,7 +2,14 @@
 //  BufferPrintOutput.swift
 //
 
+import Dispatch
+
 typealias BufferPrint = BufferPrintOutput
+
+private let bufferPrintSerialQueue = DispatchQueue(
+    label: "com.swift-print-advance.BufferPrintOutput",
+    qos: .utility
+)
 
 public final class  BufferPrintOutput: PrintOutput {
     static let shared = BufferPrintOutput()
@@ -10,12 +17,18 @@ public final class  BufferPrintOutput: PrintOutput {
     private(set) var buffer: String = ""
     
     public func write(_ string: String) {
-        buffer += string
+        bufferPrintSerialQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.buffer.append(string)
+        }
     }
     
     /// Clears the internal buffer and pasteboard content
     public func clear() {
-        buffer.removeAll()
+        bufferPrintSerialQueue.async { [weak self] in
+            guard let self = self else { return }
+            self.buffer.removeAll()
+        }
     }
 }
 
