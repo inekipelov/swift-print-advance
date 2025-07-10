@@ -11,7 +11,7 @@ private let bufferPrintSerialQueue = DispatchQueue(
     qos: .utility
 )
 
-public final class  BufferPrintOutput: PrintOutput {
+public final class BufferPrintOutput: PrintOutput {
     static let shared = BufferPrintOutput()
     private init() {}
     private(set) var buffer: String = ""
