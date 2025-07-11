@@ -30,8 +30,8 @@ cat > .docs/index.html << 'EOF'
 </html>
 EOF
 
-# Copy .nojekyll file to prevent Jekyll processing
-cp .nojekyll .docs/
+# Create .nojekyll file to prevent Jekyll processing
+touch .docs/.nojekyll
 
 # Verify documentation was generated
 if [ -d ".docs/documentation" ]; then
