@@ -47,11 +47,10 @@ public extension Result {
     /// ## Example
     ///
     /// ```swift
-    /// let fileOutput = try FilePrintOutput(url: logURL)
     /// let result: Result<Int, Error> = .failure(MyError.invalidInput)
     /// 
     /// result
-    ///     .print(to: fileOutput)
+    ///     .print(to: FilePrint.documentsFile)
     ///     .mapError { error in
     ///         // Handle error
     ///         return error

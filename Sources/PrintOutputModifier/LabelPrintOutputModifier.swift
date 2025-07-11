@@ -17,10 +17,8 @@
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let labeled = console.modified(LabelPrintOutputModifier(label: "UserID"))
 /// 
-/// "12345".print(to: labeled)
+/// "12345".print(to: ConsolePrint().labeled("UserID"))
 /// // Output: "userid = 12345"
 /// ```
 ///
@@ -82,8 +80,7 @@ public extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput().labeled("Counter")
-    /// "42".print(to: console)
+    /// "42".print(to: ConsolePrint().labeled("Counter"))
     /// // Output: "counter = 42"
     /// ```
     func labeled(_ label: String) -> ModifiedPrintOutput<Self> {

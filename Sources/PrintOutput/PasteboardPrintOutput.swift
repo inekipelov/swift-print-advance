@@ -13,7 +13,7 @@ public typealias SystemPasteboard = NSPasteboard
 #endif
 
 /// Type alias for `PasteboardPrintOutput` for convenience.
-typealias PasteboardPrint = PasteboardPrintOutput
+public typealias PasteboardPrint = PasteboardPrintOutput
 
 /// A serial queue used for thread-safe pasteboard operations.
 ///
@@ -53,9 +53,8 @@ private let pasteboardPrintSerialQueue = DispatchQueue(
 /// ## Example
 ///
 /// ```swift
-/// let pasteboard = PasteboardPrintOutput.general
-/// "Hello, ".print(to: pasteboard)
-/// "World!".print(to: pasteboard)
+/// "Hello, ".print(terminator: "", to: PasteboardPrint.general)
+/// "World!".print(to: PasteboardPrint.general)
 /// // After 0.1 seconds, "Hello, World!" will be available in the system clipboard
 /// ```
 ///
@@ -73,7 +72,7 @@ public final class PasteboardPrintOutput: PrintOutput {
     ///
     /// This static property provides a ready-to-use pasteboard output that writes
     /// to the system's general pasteboard (clipboard).
-    static let general = PasteboardPrintOutput(pasteboard: .general)
+    static let general = PasteboardPrint(pasteboard: .general)
     
     /// The internal string buffer containing all accumulated output.
     ///
@@ -98,8 +97,7 @@ public final class PasteboardPrintOutput: PrintOutput {
     /// let output1 = PasteboardPrintOutput()
     /// 
     /// // Using a custom pasteboard (iOS)
-    /// let customPasteboard = UIPasteboard.withUniqueName()
-    /// let output2 = PasteboardPrintOutput(pasteboard: customPasteboard)
+    /// let output2 = PasteboardPrintOutput(pasteboard: .withUniqueName())
     /// ```
     public init(pasteboard: SystemPasteboard = .general) {
         self.pasteboard = pasteboard

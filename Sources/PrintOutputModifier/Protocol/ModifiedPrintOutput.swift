@@ -14,9 +14,7 @@ import Foundation
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let modifier = PrefixPrintOutputModifier(prefix: "[LOG] ")
-/// let modifiedOutput = console.modified(modifier)
+/// let modifiedOutput = ConsolePrint().modified(PrefixPrintOutputModifier(prefix: "[LOG] "))
 /// ```
 @dynamicMemberLookup
 public struct ModifiedPrintOutput<Root: PrintOutput>: PrintOutput {

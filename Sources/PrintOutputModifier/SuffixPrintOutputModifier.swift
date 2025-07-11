@@ -17,10 +17,8 @@
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let suffixed = console.modified(SuffixPrintOutputModifier(suffix: " [END]"))
 /// 
-/// "Processing complete".print(to: suffixed)
+/// "Processing complete".print(to: ConsolePrint().suffixed(with: " [END]"))
 /// // Output: "Processing complete [END]"
 /// ```
 ///
@@ -82,7 +80,7 @@ public extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput().suffixed(with: "\n")
+    /// let console = ConsolePrint().suffixed(with: "\n")
     /// "Log message".print(to: console)
     /// // Output: "Log message\n"
     /// ```

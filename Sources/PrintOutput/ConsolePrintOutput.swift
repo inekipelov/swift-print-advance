@@ -5,7 +5,7 @@
 import Dispatch
 
 /// Type alias for `ConsolePrintOutput` for convenience.
-typealias ConsolePrint = ConsolePrintOutput
+public typealias ConsolePrint = ConsolePrintOutput
 
 /// A serial queue used for thread-safe console output operations.
 ///
@@ -36,8 +36,7 @@ private let consolePrintSerialQueue = DispatchQueue(
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// "Hello, World!".print(to: console)
+/// "Hello, World!".print(to: ConsolePrint())
 /// ```
 ///
 /// ## Performance

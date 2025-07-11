@@ -19,13 +19,8 @@ import Foundation
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let sanitized = console.modified(ReplacePrintOutputModifier(
-///     target: "password",
-///     replacement: "***"
-/// ))
 /// 
-/// "User password is secret123".print(to: sanitized)
+/// "User password is secret123".print(to: ConsolePrint().replacingOccurrences(of: "password", with: "***"))
 /// // Output: "User *** is secret123"
 /// ```
 ///
@@ -98,7 +93,7 @@ public extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput().replacingOccurrences(of: "ERROR", with: "⚠️")
+    /// let console = ConsolePrint().replacingOccurrences(of: "ERROR", with: "⚠️")
     /// "ERROR: File not found".print(to: console)
     /// // Output: "⚠️: File not found"
     /// ```

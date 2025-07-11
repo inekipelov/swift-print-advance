@@ -5,7 +5,7 @@
 import Dispatch
 
 /// Type alias for `BufferPrintOutput` for convenience.
-typealias BufferPrint = BufferPrintOutput
+public typealias BufferPrint = BufferPrintOutput
 
 /// A serial queue used for thread-safe buffer operations.
 ///
@@ -41,9 +41,8 @@ private let bufferPrintSerialQueue = DispatchQueue(
 /// ## Example
 ///
 /// ```swift
-/// let buffer = BufferPrintOutput.shared
-/// "Hello, ".print(to: buffer)
-/// "World!".print(to: buffer)
+/// "Hello, ".print(terminator: "", to: BufferPrint.shared)
+/// "World!".print(to: BufferPrint.shared)
 /// print(buffer.buffer) // Prints: "Hello, World!"
 /// 
 /// buffer.clear()

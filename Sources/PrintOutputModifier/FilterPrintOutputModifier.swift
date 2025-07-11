@@ -18,13 +18,12 @@
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let filtered = console.filtered { string in
+/// let console = ConsolePrint().filtered { string in
 ///     !string.contains("DEBUG")
 /// }
 /// 
-/// "INFO: Application started".print(to: filtered)  // Prints
-/// "DEBUG: Variable value = 42".print(to: filtered) // Suppressed
+/// "INFO: Application started".print(to: console)  // Prints
+/// "DEBUG: Variable value = 42".print(to: console) // Suppressed
 /// ```
 ///
 /// ## Use Cases
@@ -87,7 +86,7 @@ public extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput().filtered { !$0.isEmpty }
+    /// let console = ConsolePrint().filtered { !$0.isEmpty }
     /// "Valid message".print(to: console)  // Prints
     /// "".print(to: console)               // Suppressed
     /// ```

@@ -93,7 +93,7 @@ class ManyPrintOutputTests: XCTestCase {
     
     func testManyPrintOutputWithMixedTypes() {
         let mockOutput = MockPrintOutput()
-        let bufferOutput = BufferPrintOutput.shared
+        let bufferOutput = BufferPrint.shared
         
         // Clear buffer to start fresh
         bufferOutput.clear()

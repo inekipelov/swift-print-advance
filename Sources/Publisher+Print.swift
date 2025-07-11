@@ -27,12 +27,10 @@ public extension Publisher where Output: CustomStringConvertible {
     /// ## Example
     ///
     /// ```swift
-    /// let fileOutput = try FilePrintOutput(url: logURL)
-    /// let console = ConsolePrintOutput()
     /// 
     /// Just("Hello, Combine!")
-    ///     .print(prefix: "[STREAM] ", to: fileOutput)
-    ///     .print(to: console)
+    ///     .print(prefix: "[STREAM] ", to: FilePrint.documentsFile)
+    ///     .print(to: ConsolePrint())
     ///     .sink { _ in }
     /// ```
     ///

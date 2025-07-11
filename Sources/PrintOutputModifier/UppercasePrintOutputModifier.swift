@@ -17,10 +17,8 @@
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let uppercased = console.modified(UppercasePrintOutputModifier())
 /// 
-/// "Hello, World!".print(to: uppercased)
+/// "Hello, World!".print(to: ConsolePrint().uppercased)
 /// // Output: "HELLO, WORLD!"
 /// ```
 ///
@@ -70,8 +68,7 @@ public extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput().uppercased
-    /// "debug message".print(to: console)
+    /// "debug message".print(to: ConsolePrint().uppercased)
     /// // Output: "DEBUG MESSAGE"
     /// ```
     var uppercased: ModifiedPrintOutput<Self> {

@@ -3,7 +3,7 @@
 //
 
 /// Type alias for `ManyPrintOutput` for convenience.
-typealias ManyPrint = ManyPrintOutput
+public typealias ManyPrint = ManyPrintOutput
 
 /// A print output that distributes writes to multiple underlying print outputs.
 ///
@@ -20,12 +20,9 @@ typealias ManyPrint = ManyPrintOutput
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let fileOutput = try FilePrintOutput(url: logFileURL)
-/// let manyOutput = ManyPrintOutput(console, fileOutput)
-/// 
 /// // This will write to both console and file
-/// "Hello, World!".print(to: manyOutput)
+/// "Hello, World!".print(to: ConsolePrint()
+///                             .with(FilePrint.documentsFile))
 /// ```
 ///
 /// ## Thread Safety

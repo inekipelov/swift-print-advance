@@ -17,10 +17,8 @@
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let prefixed = console.modified(PrefixPrintOutputModifier(prefix: "[ERROR] "))
 /// 
-/// "Something went wrong".print(to: prefixed)
+/// "Something went wrong".print(to: ConsolePrint().prefixed(with: "[ERROR] "))
 /// // Output: "[ERROR] Something went wrong"
 /// ```
 ///
@@ -82,7 +80,7 @@ public extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput().prefixed(with: "[LOG] ")
+    /// let console = ConsolePrint().prefixed(with: "[LOG] ")
     /// "Application started".print(to: console)
     /// // Output: "[LOG] Application started"
     /// ```

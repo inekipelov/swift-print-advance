@@ -19,10 +19,8 @@ import Foundation
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let traced = console.trace()
 /// 
-/// "Debug message".print(to: traced)
+/// "Debug message".print(to: ConsolePrint().trace())
 /// // Output: "[MyFile.swift -> 42:debugFunction()] Debug message"
 /// ```
 ///
@@ -107,8 +105,7 @@ public extension PrintOutput {
     ///
     /// ```swift
     /// func debugFunction() {
-    ///     let console = ConsolePrintOutput().trace()
-    ///     "Debug info".print(to: console)
+    ///     "Debug info".print(to: ConsolePrint().trace())
     ///     // Output: "[MyFile.swift -> 15:debugFunction()] Debug info"
     /// }
     /// ```

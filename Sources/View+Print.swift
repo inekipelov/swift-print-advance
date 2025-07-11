@@ -95,10 +95,9 @@ public extension View {
     /// ## Example
     ///
     /// ```swift
-    /// let fileOutput = try FilePrintOutput(url: logURL)
     /// 
     /// Text("Log this view")
-    ///     .print(to: fileOutput)
+    ///     .print(to: FilePrint.documentsFile)
     ///     .padding()
     /// ```
     func print(to output: some PrintOutput) -> some View {
@@ -144,10 +143,9 @@ public extension View {
     /// ## Example
     ///
     /// ```swift
-    /// let debugOutput = BufferPrintOutput.shared
     /// 
     /// Text("Current state")
-    ///     .print("State:", viewModel.state, "at:", Date(), to: debugOutput)
+    ///     .print("State:", viewModel.state, "at:", Date(), to: BufferPrint.shared)
     /// ```
     func print<T: CustomStringConvertible>(_ items: T..., separator: String = " ", terminator: String = "\n", to output: some PrintOutput) -> some View {
         var output = output

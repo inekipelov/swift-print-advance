@@ -23,10 +23,8 @@ import Foundation
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let timestamped = console.modified(TimestampPrintOutputModifier())
 /// 
-/// "Hello, World!".print(to: timestamped)
+/// "Hello, World!".print(to: ConsolePrint().timestamped)
 /// // Output: "[2023-12-25T10:30:45Z] Hello, World!"
 /// ```
 ///
@@ -76,7 +74,7 @@ public extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput().timestamped
+    /// let console = ConsolePrint().timestamped
     /// "Debug message".print(to: console)
     /// // Output: "[2023-12-25T10:30:45Z] Debug message"
     /// ```

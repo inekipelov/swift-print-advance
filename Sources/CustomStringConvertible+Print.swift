@@ -45,12 +45,10 @@ public extension CustomStringConvertible {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput()
-    /// let fileOutput = try FilePrintOutput(url: logURL)
     /// 
     /// "Important message"
-    ///     .print(to: console)
-    ///     .print(to: fileOutput)
+    ///     .print(to: ConsolePrint())
+    ///     .print(to: FilePrint.documentsFile)
     /// // Prints to both console and file
     /// ```
     ///

@@ -20,8 +20,7 @@ import Foundation
 /// ## Example
 ///
 /// ```swift
-/// let console = ConsolePrintOutput()
-/// let anyOutput = AnyPrintOutput(console)
+/// let anyOutput = ConsolePrint().eraseToAnyPrintOutput
 /// 
 /// // Now you can use anyOutput without knowing the underlying type
 /// "Hello, World!".print(to: anyOutput)
@@ -54,7 +53,7 @@ public struct AnyPrintOutput: PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let fileOutput = try FilePrintOutput(url: logURL)
+    /// let fileOutput = try FilePrint(url: logURL)
     /// let anyOutput = AnyPrintOutput(fileOutput)
     /// 
     /// // The concrete type is now hidden
@@ -86,8 +85,7 @@ extension PrintOutput {
     /// ## Example
     ///
     /// ```swift
-    /// let console = ConsolePrintOutput()
-    /// let erased = console.eraseToAnyPrintOutput
+    /// let erased = ConsolePrint().eraseToAnyPrintOutput
     /// 
     /// // erased is now of type AnyPrintOutput
     /// useOutput(erased)

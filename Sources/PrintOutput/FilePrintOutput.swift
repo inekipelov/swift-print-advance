@@ -5,7 +5,7 @@
 import Foundation
 
 /// Type alias for `FilePrintOutput` for convenience.
-typealias FilePrint = FilePrintOutput
+public typealias FilePrint = FilePrintOutput
 
 /// A serial queue used for thread-safe file output operations.
 ///
@@ -48,7 +48,7 @@ private let filePrintSerialQueue = DispatchQueue(
 /// let logFileURL = documentsURL.appendingPathComponent("app.log")
 /// 
 /// do {
-///     let fileOutput = try FilePrintOutput(url: logFileURL)
+///     let fileOutput = try FilePrint(url: logFileURL)
 ///     "Application started".print(to: fileOutput)
 /// } catch {
 ///     print("Failed to create file output: \(error)")
@@ -178,7 +178,7 @@ public final class FilePrintOutput: PrintOutput {
 /// Private extension providing file management utilities.
 ///
 /// This extension contains helper methods for file operations that are used
-/// internally by FilePrintOutput.
+/// internally by FilePrint.
 private extension URL {
     /// Returns the URL for the specified directory.
     ///
