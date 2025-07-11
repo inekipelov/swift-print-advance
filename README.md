@@ -134,29 +134,6 @@ dependencies: [
 ]
 ```
 
-## Documentation
-
-📚 **Comprehensive Documentation Available**
-
-- **[Complete Documentation](https://inekipelov.github.io/swift-print-advance/documentation/printadvance/)** - Full API reference and guides
-- **[Quick Start Guide](https://inekipelov.github.io/swift-print-advance/documentation/printadvance/quickstart)** - Get up and running in minutes
-- **[Step-by-Step Tutorial](https://inekipelov.github.io/swift-print-advance/documentation/printadvance/tutorial)** - Build a complete logging system
-
-### Local Documentation
-
-Generate and view documentation locally:
-
-```bash
-# Quick generation and preview
-./scripts/generate-docs.sh
-
-# Manual generation
-swift package generate-documentation --target PrintAdvance
-
-# Local preview server
-swift package --disable-sandbox preview-documentation --target PrintAdvance
-```
-
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
