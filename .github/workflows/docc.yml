@@ -13,7 +13,6 @@ permissions:
   id-token: write
   contents: read
 
-  #1
 jobs:
   build:
     #2
@@ -36,7 +35,6 @@ jobs:
         with:
           path: .docs
 
-            #1
   deploy:
     #2
     runs-on: ubuntu-latest
