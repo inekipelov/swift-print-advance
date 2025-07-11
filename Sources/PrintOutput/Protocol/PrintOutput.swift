@@ -5,8 +5,6 @@ import Foundation
 /// `PrintOutput` extends `TextOutputStream` to provide a standardized way to output text
 /// to various destinations such as console, files, or custom outputs.
 ///
-/// ## Overview
-///
 /// This protocol is the foundation of the print output system, allowing you to create
 /// custom output destinations that can be used with the enhanced printing functionality.
 ///

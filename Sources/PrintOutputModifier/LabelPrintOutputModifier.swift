@@ -8,8 +8,6 @@
 /// specified label. The label is converted to lowercase and combined with the
 /// string using an equals sign, creating a consistent labeling format.
 ///
-/// ## Overview
-///
 /// The modifier transforms input strings into the format `label = string` where
 /// the label is automatically converted to lowercase for consistency. This is
 /// particularly useful for debugging, logging, and displaying variable values.

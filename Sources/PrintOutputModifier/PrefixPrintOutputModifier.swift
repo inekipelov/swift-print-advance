@@ -8,8 +8,6 @@
 /// This is useful for adding categories, log levels, or any other contextual
 /// information to output messages.
 ///
-/// ## Overview
-///
 /// The modifier simply concatenates the configured prefix with each input string.
 /// The prefix is set during initialization and remains constant for the lifetime
 /// of the modifier instance.

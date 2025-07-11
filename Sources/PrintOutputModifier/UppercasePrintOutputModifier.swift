@@ -8,8 +8,6 @@
 /// This is useful for emphasizing output, creating uniform formatting, or meeting
 /// specific display requirements.
 ///
-/// ## Overview
-///
 /// The modifier uses Swift's `uppercased()` method to convert all alphabetic
 /// characters in the input string to their uppercase equivalents. Non-alphabetic
 /// characters remain unchanged.

@@ -22,8 +22,6 @@ private let bufferPrintSerialQueue = DispatchQueue(
 /// All write operations are serialized using a dedicated dispatch queue to prevent
 /// data races when multiple threads are writing simultaneously.
 ///
-/// ## Overview
-///
 /// This class maintains an internal string buffer that accumulates all written content.
 /// It's useful for scenarios where you want to collect output for later processing,
 /// testing, or display. The buffer can be cleared at any time.

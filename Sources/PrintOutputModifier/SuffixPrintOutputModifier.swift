@@ -8,8 +8,6 @@
 /// This is useful for adding line terminators, closing brackets, or any other
 /// trailing information to output messages.
 ///
-/// ## Overview
-///
 /// The modifier simply concatenates each input string with the configured suffix.
 /// The suffix is set during initialization and remains constant for the lifetime
 /// of the modifier instance.

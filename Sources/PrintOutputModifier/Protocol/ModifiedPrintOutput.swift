@@ -5,8 +5,6 @@ import Foundation
 /// `ModifiedPrintOutput` combines a print output with a modifier to transform
 /// strings before they are written to the underlying output destination.
 ///
-/// ## Overview
-///
 /// This structure uses `@dynamicMemberLookup` to provide transparent access
 /// to the underlying print output's properties while applying modifications
 /// to the written strings.

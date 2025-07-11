@@ -22,8 +22,6 @@ private let filePrintSerialQueue = DispatchQueue(
 /// All write operations are serialized using a dedicated dispatch queue to prevent
 /// data corruption when multiple threads are writing simultaneously.
 ///
-/// ## Overview
-///
 /// This class manages a file handle and writes all output to the specified file.
 /// It automatically creates the file if it doesn't exist and appends to existing files.
 /// The file is properly closed when the instance is deallocated.

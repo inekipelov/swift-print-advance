@@ -10,8 +10,6 @@ import Foundation
 /// in ISO 8601 format (e.g., "2023-12-25T10:30:45Z"). This is useful for
 /// logging and debugging to track when specific output was generated.
 ///
-/// ## Overview
-///
 /// The modifier uses `ISO8601DateFormatter` to format timestamps consistently.
 /// Each string is prefixed with the timestamp enclosed in square brackets,
 /// followed by a space and the original string.

@@ -8,8 +8,6 @@
 /// output strings based on custom criteria. Strings that don't match the filter
 /// criteria are replaced with empty strings, effectively suppressing them.
 ///
-/// ## Overview
-///
 /// The modifier uses a closure-based predicate to determine whether each string
 /// should be included in the output. If the predicate returns `true`, the string
 /// is passed through unchanged. If it returns `false`, the string is replaced

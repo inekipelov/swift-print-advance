@@ -10,8 +10,6 @@ import Foundation
 /// line number, and function name to each output string. This is invaluable for
 /// debugging and tracing code execution flow.
 ///
-/// ## Overview
-///
 /// The modifier captures source code location information and formats it as
 /// `[filename -> line:function] string`. This helps developers quickly identify
 /// where output is coming from in their codebase.

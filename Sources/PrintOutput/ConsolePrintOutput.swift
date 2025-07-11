@@ -22,8 +22,6 @@ private let consolePrintSerialQueue = DispatchQueue(
 /// All write operations are serialized using a dedicated dispatch queue to prevent
 /// interleaved output when multiple threads are writing simultaneously.
 ///
-/// ## Overview
-///
 /// This is one of the most commonly used print outputs. It writes directly to
 /// the standard output stream, which typically displays in the console, terminal,
 /// or Xcode debug area.

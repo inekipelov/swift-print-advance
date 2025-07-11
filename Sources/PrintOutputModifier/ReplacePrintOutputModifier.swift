@@ -10,8 +10,6 @@ import Foundation
 /// substituting every occurrence of a target string with a replacement string.
 /// This is useful for content sanitization, format transformation, or text processing.
 ///
-/// ## Overview
-///
 /// The modifier uses Swift's `replacingOccurrences(of:with:)` method to perform
 /// the replacement operation. All occurrences of the target string are replaced
 /// with the replacement string in each output string.

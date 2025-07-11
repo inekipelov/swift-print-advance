@@ -30,8 +30,6 @@ private let pasteboardPrintSerialQueue = DispatchQueue(
 /// system pasteboard. All write operations are serialized and updates to the
 /// pasteboard are debounced to prevent excessive clipboard updates.
 ///
-/// ## Overview
-///
 /// This class maintains an internal buffer that accumulates all written content
 /// and periodically updates the system pasteboard. Updates are debounced with
 /// a 0.1 second delay to prevent excessive clipboard updates when multiple

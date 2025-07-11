@@ -11,8 +11,6 @@ public typealias ManyPrint = ManyPrintOutput
 /// This is useful when you want to output to both console and file, or any combination
 /// of print outputs.
 ///
-/// ## Overview
-///
 /// This class maintains a collection of print outputs and forwards all write operations
 /// to each output in the collection. You can dynamically add or remove outputs from
 /// the collection.

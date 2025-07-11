@@ -6,8 +6,6 @@ import Foundation
 /// to a print output destination. This enables functionality like adding timestamps,
 /// prefixes, filtering, or any other string transformation.
 ///
-/// ## Overview
-///
 /// Modifiers can be chained together to create complex string transformations.
 /// They are applied to print outputs using the `modified(_:)` method.
 ///

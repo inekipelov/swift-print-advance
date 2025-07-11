@@ -11,8 +11,6 @@ import Foundation
 /// print output types in a uniform way, or when you want to avoid exposing
 /// the concrete type in your API.
 ///
-/// ## Overview
-///
 /// This struct uses type erasure to wrap any type that conforms to `PrintOutput`,
 /// allowing you to treat different print output implementations uniformly.
 /// The wrapper forwards all write operations to the underlying print output.
