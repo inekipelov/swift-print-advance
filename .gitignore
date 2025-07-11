@@ -70,3 +70,6 @@ DerivedData/
 
 # Xcode Project Files
 .xcodeproj/
+
+# DocC Generated Documentation
+.docs/

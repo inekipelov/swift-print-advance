@@ -22,6 +22,15 @@ jobs:
       - name: Run Build Docs
         run: ./build-docc.sh
       
+      - name: List generated files
+        run: |
+          echo "Contents of .docs:"
+          ls -la .docs/
+          echo "Contents of .docs/documentation:"
+          ls -la .docs/documentation/
+          echo "Contents of .docs/documentation/printadvance:"
+          ls -la .docs/documentation/printadvance/
+      
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
