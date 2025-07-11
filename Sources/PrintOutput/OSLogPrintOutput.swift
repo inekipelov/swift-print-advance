@@ -56,19 +56,19 @@ private let osLogPrintSerialQueue = DispatchQueue(
 @available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
 public final class OSLogPrintOutput: PrintOutput {
     /// The default OSLog output with `.default` log level.
-    static let `default` = OSLogPrintOutput()
+    public static let `default` = OSLogPrintOutput()
     
     /// An OSLog output configured for informational messages with `.info` log level.
-    static let info = OSLogPrintOutput(level: .info)
+    public static let info = OSLogPrintOutput(level: .info)
     
     /// An OSLog output configured for debug messages with `.debug` log level.
-    static let debug = OSLogPrintOutput(level: .debug)
+    public static let debug = OSLogPrintOutput(level: .debug)
     
     /// An OSLog output configured for error messages with `.error` log level.
-    static let error = OSLogPrintOutput(level: .error)
+    public static let error = OSLogPrintOutput(level: .error)
     
     /// An OSLog output configured for fault messages with `.fault` log level.
-    static let fault = OSLogPrintOutput(level: .fault)
+    public static let fault = OSLogPrintOutput(level: .fault)
     
     /// The subsystem identifier for the logger.
     private let subsystem: String
