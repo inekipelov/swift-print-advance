@@ -49,15 +49,6 @@
 /// - ``TracePrintOutputModifier``
 /// - ``UppercasePrintOutputModifier``
 ///
-/// ## See Also
-///
-/// - <doc:CoreExtensions>
-/// - <doc:CustomOutputs>
-/// - <doc:ModifyingOutputs>
-/// - <doc:SwiftUIIntegration>
-/// - <doc:CombineIntegration>
-/// - <doc:ResultUtilities>
-///
 public struct PrintAdvance {
     /// The current version of the PrintAdvance library.
     public static let version = "0.1.0"
