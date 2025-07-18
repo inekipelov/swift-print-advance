@@ -70,7 +70,7 @@ public final class FilePrintOutput: PrintOutput {
     ///
     /// - Note: This instance is created lazily on first access.
     /// - Warning: This will crash the application if the file cannot be created.
-    static let documentsFile: FilePrintOutput = {
+    public static let documentsFile: FilePrintOutput = {
         let timestamp: String = {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"

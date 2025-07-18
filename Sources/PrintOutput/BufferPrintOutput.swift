@@ -57,7 +57,7 @@ public final class BufferPrintOutput: PrintOutput {
     ///
     /// This static property provides a convenient way to access a shared buffer
     /// output instance without having to manage the lifecycle yourself.
-    static let shared = BufferPrintOutput()
+    public static let shared = BufferPrintOutput()
     
     /// Private initializer to enforce singleton pattern.
     private init() {}

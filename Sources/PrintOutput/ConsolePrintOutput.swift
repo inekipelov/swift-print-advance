@@ -43,6 +43,9 @@ private let consolePrintSerialQueue = DispatchQueue(
 /// so the calling thread is not blocked. However, be aware that excessive
 /// console output can impact performance.
 public struct ConsolePrintOutput: PrintOutput {
+
+    public init() {}
+
     /// Writes a string to the console.
     ///
     /// This method writes the provided string to the standard output stream.

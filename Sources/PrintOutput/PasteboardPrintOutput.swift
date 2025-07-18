@@ -70,7 +70,7 @@ public final class PasteboardPrintOutput: PrintOutput {
     ///
     /// This static property provides a ready-to-use pasteboard output that writes
     /// to the system's general pasteboard (clipboard).
-    static let general = PasteboardPrint(pasteboard: .general)
+    public static let general = PasteboardPrint(pasteboard: .general)
     
     /// The internal string buffer containing all accumulated output.
     ///
