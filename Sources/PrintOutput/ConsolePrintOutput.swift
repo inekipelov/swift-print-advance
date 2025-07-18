@@ -61,7 +61,7 @@ public struct ConsolePrintOutput: PrintOutput {
     /// - Multiple concurrent calls are serialized automatically
     public mutating func write(_ string: String) {
         consolePrintSerialQueue.async {
-            Swift.print(string, terminator: "")
+            Swift.print(string)
         }
     }
 }
