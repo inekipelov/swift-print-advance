@@ -158,7 +158,10 @@ public final class FilePrintOutput: PrintOutput {
     /// ```
     public func write(_ string: String) {
         filePrintSerialQueue.async { [fileHandle] in
-            let data = Data(string.utf8)
+            let oldData = fileHandle.readDataToEndOfFile()
+            let newString = oldData.isEmpty ? string : "\n" + string
+            // Ensure the string ends with a newline character
+            let data = Data(newString.utf8)
             fileHandle.seekToEndOfFile()
             fileHandle.write(data)
         }

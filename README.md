@@ -34,11 +34,6 @@ struct ContentView: View {
             .printChanges() // iOS 15+
     }
 }
-
-// Print Publishers (Combine)
-publisher
-    .print(prefix: "Debug: ", to: FilePrint.documentsFile)
-    .sink { _ in }
 ```
 
 ### Print Outputs
@@ -63,23 +58,6 @@ print(buffer.content) // Retrieve buffered content
     .with(BufferPrint.shared)
 )
 ```
-
-### Output Modifiers
-
-```swift
-// Timestamp modifier
-"Message".print(to: ConsolePrint().timestamped)
-// Output: [2025-07-09T12:34:56Z] Message
-
-// Prefix modifier
-"Launch".print(to: ConsolePrint().prefixed(with: "🚀 "))
-// Output: 🚀 Launch
-
-// Chain multiple modifiers
-"Important".print(to: ConsolePrint().uppercased.trace().timestamped)
-// Output: [2025-07-09T12:34:56Z] [File.swift -> 40:main()] IMPORTANT
-```
-
 ## Custom Implementations
 
 ### Custom PrintOutput
@@ -100,40 +78,12 @@ struct NetworkPrintOutput: PrintOutput {
 }
 ```
 
-### Custom PrintOutputModifier
-
-```swift
-import PrintAdvance
-
-struct JSONPrintOutputModifier: PrintOutputModifier {
-    func modify(_ string: String) -> String {
-        let json = ["message": string, "timestamp": Date().timeIntervalSince1970]
-        let data = try? JSONSerialization.data(withJSONObject: json)
-        return String(data: data ?? Data(), encoding: .utf8) ?? string
-    }
-}
-
-extension PrintOutput {
-    var jsonFormatted: ModifiedPrintOutput<Self> {
-        modified(JSONPrintOutputModifier())
-    }
-}
-
-// Usage
-"Hello".print(to: ConsolePrint().jsonFormatted)
-// Output: {"message":"Hello","timestamp":1720531496.789}
-```
-
 ## Installation
 
 Add to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/inekipelov/swift-print-advance", from: "0.1.0")
+    .package(url: "https://github.com/inekipelov/swift-print-advance", from: "0.2.0")
 ]
 ```
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.

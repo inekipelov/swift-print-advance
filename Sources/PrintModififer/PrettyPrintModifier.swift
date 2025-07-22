@@ -1,37 +1,10 @@
 //
-//  PrettyPrintOutputModifier.swift
+//  PrettyPrintModifier.swift
 //
 
 import Foundation
 
-/// A print output modifier that formats strings with pretty-printing.
-///
-/// `PrettyPrintOutputModifier` transforms input strings to make them more readable
-/// by adding proper indentation, line breaks, and formatting. It's particularly
-/// useful for formatting structured data like JSON, XML, or nested objects.
-///
-/// The modifier supports multiple formatting styles including JSON-like formatting,
-/// indented structure formatting, and custom beautification rules.
-///
-/// ## Example
-///
-/// ```swift
-/// let jsonString = """
-/// {"name":"John","age":30,"city":"New York","hobbies":["reading","gaming"]}
-/// """
-/// jsonString.print(to: ConsolePrint().prettyPrinted())
-/// // Output:
-/// // {
-/// //   "name": "John",
-/// //   "age": 30,
-/// //   "city": "New York",
-/// //   "hobbies": [
-/// //     "reading",
-/// //     "gaming"
-/// //   ]
-/// // }
-/// ```
-public struct PrettyPrintOutputModifier: PrintOutputModifier {
+public struct PrettyPrintModifier: PrintModifier {
     
     /// The indentation style to use for formatting.
     public enum Spacing {
@@ -70,10 +43,7 @@ public struct PrettyPrintOutputModifier: PrintOutputModifier {
         self.maxLineLength = maxLineLength
     }
     
-    /// Modifies the input string by applying pretty-printing formatting.
-    /// - Parameter string: The original string to format.
-    /// - Returns: The pretty-printed string.
-    public func modify(_ string: String) -> String {
+    public func callAsFunction(input string: String) -> String {
         return switch format {
         case .json: formatJSON(string)
         case .structured: formatStructured(string)
@@ -82,8 +52,7 @@ public struct PrettyPrintOutputModifier: PrintOutputModifier {
     }
 }
 
-// MARK: - Private Methods
-private extension PrettyPrintOutputModifier {
+private extension PrettyPrintModifier {
     
     /// Formats a string as JSON with proper indentation.
     func formatJSON(_ string: String) -> String {
@@ -158,7 +127,7 @@ private extension PrettyPrintOutputModifier {
                 result.append(" ")
                 
             case " ", "\t", "\n", "\r":
-                    // Skip whitespace in structured mode
+                // Skip whitespace in structured mode
                 continue
                 
             default:
@@ -169,14 +138,14 @@ private extension PrettyPrintOutputModifier {
         return result
     }
     
-    /// Formats a string with minimal formatting.
+        /// Formats a string with minimal formatting.
     func formatMinimal(_ string: String) -> String {
         return string
             .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    /// Adjusts indentation in a pre-formatted string to match the configured style.
+        /// Adjusts indentation in a pre-formatted string to match the configured style.
     func adjustIndentation(_ string: String) -> String {
         let lines = string.components(separatedBy: .newlines)
         var result: [String] = []
@@ -198,7 +167,7 @@ private extension PrettyPrintOutputModifier {
     }
 }
 
-private extension PrettyPrintOutputModifier.Spacing {
+private extension PrettyPrintModifier.Spacing {
     var string: String {
         switch self {
         case .spaces(let count):
@@ -206,29 +175,5 @@ private extension PrettyPrintOutputModifier.Spacing {
         case .tabs:
             return "\t"
         }
-    }
-}
-
-// MARK: - PrintOutput Extensions
-
-public extension PrintOutput {
-    /// Returns a modified print output that applies pretty-printing formatting.
-    /// - Parameters:
-    ///   - indentationStyle: The indentation style to use (default: 2 spaces)
-    ///   - formattingStyle: The formatting style to apply (default: .json)
-    ///   - maxLineLength: Maximum line length before wrapping (default: 80)
-    /// - Returns: A modified print output with pretty-printing applied.
-    func prettyPrinted(
-        spacing: PrettyPrintOutputModifier.Spacing = .spaces(2),
-        format: PrettyPrintOutputModifier.Format = .json,
-        maxLineLength: Int = 80
-    ) -> some PrintOutput {
-        return modified(
-            PrettyPrintOutputModifier(
-                spacing: spacing,
-                format: format,
-                maxLineLength: maxLineLength
-            )
-        )
     }
 }

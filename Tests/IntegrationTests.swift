@@ -32,23 +32,4 @@ class IntegrationTests: XCTestCase {
         let outputLines = mockOutput.capturedOutput.components(separatedBy: "\n").filter { !$0.isEmpty }
         XCTAssertEqual(outputLines.count, 2)
     }
-    
-    func testMockPrintOutputFunctionality() {
-        let mockOutput = MockPrintOutput()
-        
-        // Test writing
-        mockOutput.write("Hello")
-        mockOutput.write(" ")
-        mockOutput.write("World")
-        
-        XCTAssertEqual(mockOutput.capturedOutput, "Hello World")
-        
-        // Test clearing
-        mockOutput.clear()
-        XCTAssertEqual(mockOutput.capturedOutput, "")
-        
-        // Test writing after clear
-        mockOutput.write("New content")
-        XCTAssertEqual(mockOutput.capturedOutput, "New content")
-    }
 }

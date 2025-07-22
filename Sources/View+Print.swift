@@ -65,91 +65,44 @@ public extension View {
         return self
     }
     
-    /// Prints the view's description to the console and returns the view.
-    ///
-    /// This method prints the view's string representation to the standard output.
-    /// It's useful for quick debugging and understanding view structure.
-    ///
-    /// - Returns: The view unchanged for method chaining.
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// Text("Debug me")
-    ///     .print()
-    ///     .foregroundColor(.blue)
-    /// ```
     func print() -> some View {
-        Swift.print(self)
+        return PrintAction(self)()
+    }
+    
+    func print(
+        to output: some PrintOutput,
+        with modifiers: (any PrintModifier)...
+    ) -> some View {
+        return PrintAction(self, to: output, with: modifiers)()
+    }
+    
+    func print(
+        to output: some PrintOutput,
+        with modifiers: [any PrintModifier] = []
+    ) -> some View {
+        return PrintAction(self, to: output, with: modifiers)()
+    }
+    
+    func print<T: CustomStringConvertible>(_ item: T) -> some View {
+        PrintAction(item)()
         return self
     }
     
-    /// Prints the view's description to the specified output and returns the view.
-    ///
-    /// This method prints the view's string representation to the provided print output,
-    /// allowing for flexible output destinations.
-    ///
-    /// - Parameter output: The print output destination to write to.
-    /// - Returns: The view unchanged for method chaining.
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// 
-    /// Text("Log this view")
-    ///     .print(to: FilePrint.documentsFile)
-    ///     .padding()
-    /// ```
-    func print(to output: some PrintOutput) -> some View {
-        var output = output
-        Swift.print(self, to: &output)
+    func print<T: CustomStringConvertible>(
+        _ item: T,
+        to output: some PrintOutput,
+        with modifiers: (any PrintModifier)...
+    ) -> some View {
+        PrintAction(item, to: output, with: modifiers)()
         return self
     }
     
-    /// Prints custom items to the console and returns the view.
-    ///
-    /// This method allows printing arbitrary content alongside the view for debugging.
-    /// It's particularly useful for logging state values or other contextual information.
-    ///
-    /// - Parameters:
-    ///   - items: The items to print.
-    ///   - separator: The separator between items. Defaults to a space.
-    ///   - terminator: The terminator after all items. Defaults to a newline.
-    /// - Returns: The view unchanged for method chaining.
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// Text("User: \(username)")
-    ///     .print("Current user:", username, "logged in at:", Date())
-    /// ```
-    func print<T: CustomStringConvertible>(_ items: T..., separator: String = " ", terminator: String = "\n") -> some View {
-        Swift.print(items, separator: separator, terminator: terminator)
-        return self
-    }
-    
-    /// Prints custom items to the specified output and returns the view.
-    ///
-    /// This method allows printing arbitrary content to a specific output destination
-    /// alongside the view. It's useful for logging contextual information to files or other outputs.
-    ///
-    /// - Parameters:
-    ///   - items: The items to print.
-    ///   - separator: The separator between items. Defaults to a space.
-    ///   - terminator: The terminator after all items. Defaults to a newline.
-    ///   - output: The print output destination to write to.
-    /// - Returns: The view unchanged for method chaining.
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// 
-    /// Text("Current state")
-    ///     .print("State:", viewModel.state, "at:", Date(), to: BufferPrint.shared)
-    /// ```
-    func print<T: CustomStringConvertible>(_ items: T..., separator: String = " ", terminator: String = "\n", to output: some PrintOutput) -> some View {
-        var output = output
-        Swift.print(items, separator: separator, terminator: terminator, to: &output)
+    func print<T: CustomStringConvertible>(
+        _ item: T,
+        to output: some PrintOutput,
+        with modifiers: [any PrintModifier] = []
+    ) -> some View {
+        PrintAction(item, to: output, with: modifiers)()
         return self
     }
 }

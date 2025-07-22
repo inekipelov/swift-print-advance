@@ -97,7 +97,8 @@ public final class BufferPrintOutput: PrintOutput {
     public func write(_ string: String) {
         bufferPrintSerialQueue.async { [weak self] in
             guard let self = self else { return }
-            self.buffer.append(string)
+            let newString = self.buffer.isEmpty ? string : "\n" + string
+            self.buffer.append(newString)
         }
     }
     

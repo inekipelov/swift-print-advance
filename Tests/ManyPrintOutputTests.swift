@@ -18,8 +18,7 @@ class ManyPrintOutputTests: XCTestCase {
         
         let manyOutput = ManyPrintOutput(mockOutput1, mockOutput2, mockOutput3)
         
-        let testString = "Hello, World!"
-        manyOutput.write(testString)
+        let testString = "Hello, World!".print(to: manyOutput)
         
         XCTAssertEqual(mockOutput1.capturedOutput, testString)
         XCTAssertEqual(mockOutput2.capturedOutput, testString)
@@ -34,8 +33,7 @@ class ManyPrintOutputTests: XCTestCase {
         
         let manyOutput = ManyPrintOutput(outputs)
         
-        let testString = "Test with array"
-        manyOutput.write(testString)
+        let testString = "Test with array".print(to: manyOutput)
         
         XCTAssertEqual(mockOutput1.capturedOutput, testString)
         XCTAssertEqual(mockOutput2.capturedOutput, testString)
@@ -48,8 +46,7 @@ class ManyPrintOutputTests: XCTestCase {
         
         let manyOutput = ManyPrintOutput.with(mockOutput1, mockOutput2)
         
-        let testString = "Factory method test"
-        manyOutput.write(testString)
+        let testString = "Factory method test".print(to: manyOutput)
         
         XCTAssertEqual(mockOutput1.capturedOutput, testString)
         XCTAssertEqual(mockOutput2.capturedOutput, testString)
@@ -66,8 +63,7 @@ class ManyPrintOutputTests: XCTestCase {
         manyOutput.add(mockOutput2)
         XCTAssertEqual(manyOutput.count, 2)
         
-        let testString = "Added output test"
-        manyOutput.write(testString)
+        let testString = "Added output test".print(to: manyOutput)
         
         XCTAssertEqual(mockOutput1.capturedOutput, testString)
         XCTAssertEqual(mockOutput2.capturedOutput, testString)
@@ -84,8 +80,7 @@ class ManyPrintOutputTests: XCTestCase {
         XCTAssertEqual(manyOutput.count, 0)
         
         // Writing after clear should not affect the original outputs
-        let testString = "After clear"
-        manyOutput.write(testString)
+        "After clear".print(to: manyOutput)
         
         XCTAssertEqual(mockOutput1.capturedOutput, "")
         XCTAssertEqual(mockOutput2.capturedOutput, "")
@@ -100,8 +95,7 @@ class ManyPrintOutputTests: XCTestCase {
         
         let manyOutput = ManyPrintOutput(mockOutput, bufferOutput)
         
-        let testString = "Mixed types test"
-        manyOutput.write(testString)
+        let testString = "Mixed types test".print(to: manyOutput)
         
         XCTAssertEqual(mockOutput.capturedOutput, testString)
         XCTAssertEqual(manyOutput.count, 2)

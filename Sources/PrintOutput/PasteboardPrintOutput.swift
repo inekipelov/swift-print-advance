@@ -119,7 +119,8 @@ public final class PasteboardPrintOutput: PrintOutput {
     public func write(_ string: String) {
         pasteboardPrintSerialQueue.async { [weak self] in
             guard let self = self else { return }
-            self.buffer.append(string)
+            let newString = self.buffer.isEmpty ? string : "\n" + string
+            self.buffer.append(newString)
             self.pendingUpdatePasteboard(with: self.buffer)
         }
     }

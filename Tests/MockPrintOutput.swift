@@ -19,6 +19,7 @@ class MockPrintOutput: PrintOutput {
     
     /// Write to the mock output
     func write(_ string: String) {
-        buffer += string
+        let newString = buffer.isEmpty ? string : "\n" + string
+        buffer += newString
     }
 }
