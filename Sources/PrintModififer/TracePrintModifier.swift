@@ -12,7 +12,7 @@ public struct TracePrintModifier: PrintModifier {
     
     let file: String
     
-    init(
+    public init(
         _ line: Int = #line,
         _ function: String = #function,
         _ file: String = #file
