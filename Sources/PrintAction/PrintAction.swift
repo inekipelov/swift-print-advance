@@ -42,7 +42,7 @@ private extension PrintAction {
             description = String(describing: subject)
         }
         var modified: String
-        if !modifiers.isEmpty {
+        if modifiers.isEmpty {
             modified = description
         } else {
             modified = modifiers.reversed().reduce(description) { result, modifier in

@@ -1,5 +1,5 @@
 //
-//  View+Print.swift
+//  View+PrintAction.swift
 //
 
 #if canImport(SwiftUI)
