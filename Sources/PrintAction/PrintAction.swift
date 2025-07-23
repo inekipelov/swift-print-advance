@@ -8,7 +8,7 @@ public struct PrintAction<Subject> {
     private(set) var output: (any PrintOutput)?
     private var modifiers: [any PrintModifier] = []
     
-    init(
+    public init(
         _ subject: Subject,
         to output: (any PrintOutput)? = nil,
         with modifiers: [any PrintModifier] = []
@@ -18,7 +18,7 @@ public struct PrintAction<Subject> {
         self.modifiers = modifiers
     }
     
-    init(
+    public init(
         _ subject: Subject,
         to output: (any PrintOutput)? = nil,
         with modifiers: (any PrintModifier)...
